@@ -4,6 +4,7 @@ import { InputGroup, FormControl, Form, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import addExpenseAction from '../../redux/actions/action';
+import './add.scss';
 
 const Add = () => {
 

@@ -1,0 +1,13 @@
+$backgroundColor: rgba(241, 242, 247, 1);
+$red: #fc5c65;
+$orange: #fd9644;
+$yellow: #fed330;
+$green: #26de81;
+$turquoise: #2bcbba;
+$blue: #45aaf2;
+
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    flex-direction: $direction;
+}
