@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './home.scss'
 
 const Home = () => {
 
@@ -8,14 +9,17 @@ const Home = () => {
 
     if (expenseList.length === 0) {
         return (
-            <div className="no-expenses-message">
-                <h2>There's no expenses yet !</h2>
-                <h4>go ahead and add one</h4>
-                <Link to="/add">
-                    <Button variant="primary" size="lg" block>
-                        Add Expense
+            <div className="no-expenses-message mx-auto">
+                <div className="add-expense-message">
+                    <h2 className="text-center mb-4">There's no expenses yet !</h2>
+                    <h4 className="text-center mb-5">go ahead and add some</h4>
+                    <Link to="/add">
+                        <Button variant="primary" size="lg" block>
+                            Add Expense
                     </Button>
-                </Link>
+                    </Link>
+                </div>
+
             </div>
 
         )
