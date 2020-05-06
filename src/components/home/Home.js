@@ -1,11 +1,34 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './home.scss'
+import ExpenseList from './expenseList/ExpenseList';
+import './home.scss';
 
 const Home = () => {
 
-    const [expenseList, setExpenseList] = useState([]);
+    const [expenseList, setExpenseList] = useState([
+        {
+            id: 1,
+            title: "buying a shirt",
+            amount: "50",
+            date: "03/24/2020",
+            expenseType: "clothes",
+        },
+        {
+            id: 2,
+            title: "buying a shirt",
+            amount: "50",
+            date: "03/24/2020",
+            expenseType: "work",
+        },
+        {
+            id: 3,
+            title: "buying a shirt",
+            amount: "50",
+            date: "03/24/2020",
+            expenseType: "leisure",
+        }
+    ]);
 
     if (expenseList.length === 0) {
         return (
@@ -28,9 +51,22 @@ const Home = () => {
         return (
             <div className="home-section">
                 <div className="expenses-list container">
-
+                    {
+                        expenseList.map((expense) => (
+                            <ExpenseList id={expense.id} title={expense.title} amount={expense.amount} date={expense.date} type={expense.expenseType} key={expense.id} />
+                        )
+                        )
+                    }
                 </div>
                 <div className="sidebar container">
+                    <div className="sidebar-balance">
+                        <h4>
+                            Total Balance
+                        </h4>
+                        <span>
+                            1200 <span className="currency">€</span>
+                        </span>
+                    </div>
                     <Link to="/add">
                         <Button variant="primary" size="lg" block>
                             Add Expense
