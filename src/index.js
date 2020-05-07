@@ -8,14 +8,9 @@ import rootReducer from './redux/reducers/rootReducer'
 import { loadState, saveState } from './localstorage'
 
 const persistedState = loadState()
-const store = createStore(
-    rootReducer,
-    persistedState,
-    window.devToolsExtension && window.devToolsExtension()
-)
+const store = createStore(rootReducer, persistedState)
 
 store.subscribe(() => {
-    console.log(persistedState)
     saveState({
         expenses: store.getState().expenses,
     })

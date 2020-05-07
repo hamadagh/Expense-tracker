@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Button, FormControl, Form } from 'react-bootstrap'
+import { Button, FormControl } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import ExpenseList from './expenseList/ExpenseList'
 import './home.scss'
@@ -43,7 +43,9 @@ const Home = () => {
     }
 
     if (dateFilter !== '') {
-        filteredExpenses = expenses.filter((exp) => exp.date === dateFilter)
+        filteredExpenses = filteredExpenses.filter(
+            (exp) => exp.date === dateFilter
+        )
     }
 
     // handle expanses sorting
@@ -53,13 +55,13 @@ const Home = () => {
     }
 
     if (sortExpenses === 'ascending') {
-        filteredExpenses = expenses.sort((a, b) => {
+        filteredExpenses = filteredExpenses.sort((a, b) => {
             if (new Date(a.date) > new Date(b.date)) return -1
             if (new Date(a.date) < new Date(b.date)) return 1
         })
     }
     if (sortExpenses === 'descending') {
-        filteredExpenses = expenses.sort((a, b) => {
+        filteredExpenses = filteredExpenses.sort((a, b) => {
             if (new Date(a.date) > new Date(b.date)) return 1
             if (new Date(a.date) < new Date(b.date)) return -1
         })
@@ -88,7 +90,7 @@ const Home = () => {
             <div className="home-section">
                 <div className="sidebar container">
                     <div className="sidebar-filter d-flex">
-                        <div className="filter-by-type">
+                        <div className="filter-by-type mb-4 mt-3">
                             <h5>Filter by type</h5>
                             <FormControl
                                 as="select"
@@ -100,7 +102,7 @@ const Home = () => {
                                 <option value="work">Work</option>
                             </FormControl>
                         </div>
-                        <div className="filter-by-date">
+                        <div className="filter-by-date mb-4">
                             <h5>Fillter by date</h5>
                             <FormControl
                                 name="date"
@@ -108,7 +110,7 @@ const Home = () => {
                                 onChange={handleFilterDate}
                             />
                         </div>
-                        <div className="sort-by-date">
+                        <div className="sort-by-date mb-4">
                             <h5>Sort by date</h5>
                             <FormControl
                                 as="select"
@@ -120,16 +122,18 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="sidebar-balance">
-                        <h4>Total Balance</h4>
-                        <span>
+                        <h4>Total amount</h4>
+                        <span className="amount">
                             {totalAmount} <span className="currency">€</span>
                         </span>
                     </div>
-                    <Link to="/add">
-                        <Button variant="primary" size="lg" block>
-                            Add Expense
-                        </Button>
-                    </Link>
+                    <div className="sidebar-button pb-2">
+                        <Link to="/add">
+                            <Button variant="primary" size="lg" block>
+                                Add Expense
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
                 <div className="expenses-list container">
                     <ExpenseList expenses={filteredExpenses} />

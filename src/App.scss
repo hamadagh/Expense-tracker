@@ -1,5 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
-@import "./style/style";
+
+$backgroundColor: rgba(241, 242, 247, 1);
 
 .App {
     background-color: $backgroundColor;

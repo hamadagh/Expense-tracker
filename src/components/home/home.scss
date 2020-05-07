@@ -1,3 +1,7 @@
+@import "../../responsive/responsive.scss";
+
+
+
 .no-expenses-message {
     width: 50vh;
     height: 100vh;
@@ -11,4 +15,59 @@
 
 .home-section {
     display: flex;
+
+    @include sm {
+        flex-direction: column;
+    }
+
+    @include lg {
+        flex-direction: row;
+    }
+
+    @include xl {
+        flex-direction: row;
+    }
+
+    .sidebar {
+
+
+        @include sm {
+            height: 73vh;
+            justify-content: flex-start;
+        }
+
+        @include md {
+            height: 45vh;
+        }
+
+        @include lg {
+            display: flex;
+            height: 100vh;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @include xl {}
+
+        .sidebar-filter {
+            justify-content: space-between;
+
+            @include sm {
+                flex-direction: column;
+
+            }
+
+        }
+
+        .sidebar-balance {
+            align-self: center;
+
+            .amount {
+                font-size: 7vw;
+            }
+        }
+
+        .sidebar-button {}
+    }
+
 }

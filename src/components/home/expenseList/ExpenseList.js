@@ -5,6 +5,7 @@ import {
     deleteExpenseAction,
     updateExpenseAction,
 } from '../../../redux/actions/action'
+import './expenseList.scss'
 
 const ExpenseItem = ({ expense }) => {
     const dispatch = useDispatch()
@@ -21,19 +22,7 @@ const ExpenseItem = ({ expense }) => {
     }
 
     return (
-        <ListGroup.Item>
-            <div>
-                Amount:{' '}
-                {editing ? (
-                    <input
-                        type="number"
-                        onChange={(e) => setNewAmount(e.target.value)}
-                        value={newAmount}
-                    />
-                ) : (
-                    <span>{expense.amount}</span>
-                )}
-            </div>
+        <ListGroup.Item className="mb-2">
             <div>
                 Title:{' '}
                 {editing ? (
@@ -46,6 +35,19 @@ const ExpenseItem = ({ expense }) => {
                     <span>{expense.title}</span>
                 )}
             </div>
+            <div>
+                Amount:{' '}
+                {editing ? (
+                    <input
+                        type="number"
+                        onChange={(e) => setNewAmount(e.target.value)}
+                        value={newAmount}
+                    />
+                ) : (
+                    <span>{expense.amount}</span>
+                )}
+            </div>
+
             <div>Date: {expense.date}</div>
             <div>Expense type: {expense.expenseType}</div>
             <Button
@@ -69,11 +71,13 @@ const ExpenseItem = ({ expense }) => {
 
 const ExpenseList = ({ expenses }) => {
     return (
-        <ListGroup variant="flush">
-            {expenses.map((exp) => (
-                <ExpenseItem expense={exp} key={exp.id} />
-            ))}
-        </ListGroup>
+        <div className="expense-group">
+            <ListGroup variant="flush">
+                {expenses.map((exp) => (
+                    <ExpenseItem expense={exp} key={exp.id} />
+                ))}
+            </ListGroup>
+        </div>
     )
 }
 

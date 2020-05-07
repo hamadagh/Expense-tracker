@@ -7,7 +7,7 @@ import './App.scss'
 function App() {
     return (
         <BrowserRouter>
-            <div className="App container">
+            <div className="App fluid-container">
                 <Switch>
                     <Route path="/" component={Home} exact />
                     <Route path="/Add" component={Add} />
