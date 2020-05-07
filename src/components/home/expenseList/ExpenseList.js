@@ -22,49 +22,56 @@ const ExpenseItem = ({ expense }) => {
     }
 
     return (
-        <ListGroup.Item className="mb-2">
+        <ListGroup.Item className="mb-2 expense-item">
             <div>
-                Title:{' '}
-                {editing ? (
-                    <input
-                        type="text"
-                        onChange={(e) => setNewTitle(e.target.value)}
-                        value={newTitle}
-                    />
-                ) : (
-                    <span>{expense.title}</span>
-                )}
-            </div>
-            <div>
-                Amount:{' '}
-                {editing ? (
-                    <input
-                        type="number"
-                        onChange={(e) => setNewAmount(e.target.value)}
-                        value={newAmount}
-                    />
-                ) : (
-                    <span>{expense.amount}</span>
-                )}
+                <div className="title-and-date">
+                    <div>
+                        {editing ? (
+                            <input
+                                type="text"
+                                onChange={(e) => setNewTitle(e.target.value)}
+                                value={newTitle}
+                            />
+                        ) : (
+                            <span className="title">{expense.title}</span>
+                        )}
+                    </div>
+                    <div className="date">{expense.date}</div>
+                </div>
+
+                <div>
+                    {editing ? (
+                        <input
+                            type="number"
+                            onChange={(e) => setNewAmount(e.target.value)}
+                            value={newAmount}
+                        />
+                    ) : (
+                        <span className="amount">{expense.amount} €</span>
+                    )}
+                </div>
             </div>
 
-            <div>Date: {expense.date}</div>
-            <div>Expense type: {expense.expenseType}</div>
-            <Button
-                variant="danger"
-                onClick={() => dispatch(deleteExpenseAction(expense))}
-            >
-                Delete
-            </Button>
-            {editing ? (
-                <Button variant="info" onClick={handleSaveEdit}>
-                    Save
-                </Button>
-            ) : (
-                <Button onClick={() => setEditing(true)} variant="info">
-                    Edit
-                </Button>
-            )}
+            <div className="type-and-buttons">
+                <div className="type">Type: {expense.expenseType}</div>
+                <div>
+                    <Button
+                        variant="danger"
+                        onClick={() => dispatch(deleteExpenseAction(expense))}
+                    >
+                        Delete
+                    </Button>
+                    {editing ? (
+                        <Button variant="info" onClick={handleSaveEdit}>
+                            Save
+                        </Button>
+                    ) : (
+                        <Button onClick={() => setEditing(true)} variant="info">
+                            Edit
+                        </Button>
+                    )}
+                </div>
+            </div>
         </ListGroup.Item>
     )
 }

@@ -1,4 +1,39 @@
+@import "../../../responsive/responsive.scss";
+
 .expense-group {
     height: 100vh;
     overflow-y: scroll;
+
+    .expense-item {
+        height: 150px;
+
+        .title {
+            font-size: 22px;
+            font-weight: bolder;
+        }
+
+        .date {
+            opacity: 0.5;
+        }
+
+        .type-and-buttons {
+            display: flex;
+            align-self: flex-end;
+            justify-content: space-between;
+
+            .type {
+
+                @include sm {
+                    font-size: 15px;
+                    font-weight: bold;
+
+                }
+
+                @include md {
+                    font-size: 17px;
+                }
+            }
+
+        }
+    }
 }
