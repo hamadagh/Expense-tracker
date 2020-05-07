@@ -1,20 +1,20 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Home from './components/home/Home';
-import Add from './components/add/Add';
-import './App.scss';
+import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Home from './components/home/Home'
+import Add from './components/add/Add'
+import './App.scss'
 
 function App() {
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/Add" component={Add} />
-        </Switch>
-      </div>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <div className="App container">
+                <Switch>
+                    <Route path="/" component={Home} exact />
+                    <Route path="/Add" component={Add} />
+                </Switch>
+            </div>
+        </BrowserRouter>
+    )
 }
 
-export default App;
+export default App

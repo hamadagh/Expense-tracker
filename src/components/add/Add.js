@@ -1,39 +1,34 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { InputGroup, FormControl, Form, Button } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import addExpenseAction from '../../redux/actions/action';
-import './add.scss';
+import React from 'react'
+import { useState } from 'react'
+import { InputGroup, FormControl, Form, Button } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { addExpenseAction } from '../../redux/actions/action'
+import './add.scss'
 
 const Add = () => {
-
     const [expense, setExpense] = useState({
         title: '',
         amount: '',
         date: '',
         expenseType: '',
-    });
+    })
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
+
     const handleChange = (e) => {
-        setExpense({ ...expense, [e.target.name]: e.target.value });
+        setExpense({ ...expense, [e.target.name]: e.target.value })
+    }
 
-    };
     const handleSubmit = (e) => {
-        e.preventDefault();
-        if (expense.title.trim() === "") {
-            alert('Please add a title')
-        } else if (expense.amount.trim() === "") {
-            alert('Please add an amount')
-        } else if (expense.date.trim() === "") {
-            alert('Please add a date')
-        } else if (expense.expenseType.trim() === "" || expense.expenseType.trim() === "Select a type") {
-            alert('Please add a type')
+        e.preventDefault()
+        if (
+            expense.expenseType.trim() === '' ||
+            expense.expenseType.trim() === 'Select a type'
+        ) {
+            alert('Please select a type')
         } else {
-            return (
-                dispatch(addExpenseAction(expense))
-            )
+            return dispatch(addExpenseAction(expense))
         }
     }
 
@@ -45,18 +40,19 @@ const Add = () => {
                 <Link to="/">Back To Home</Link>
             </div>
             <div className="add-header">
-                <h2>
-                    Add Expenses
-                </h2>
+                <h2>Add Expenses</h2>
             </div>
             <div className="add-form">
                 <Form onSubmit={handleSubmit}>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                            <InputGroup.Text id="basic-addon1">
+                                Title
+                            </InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
                             name="title"
+                            required
                             placeholder="Title"
                             aria-label="title"
                             aria-describedby="basic-addon1"
@@ -65,10 +61,14 @@ const Add = () => {
                     </InputGroup>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">€</InputGroup.Text>
+                            <InputGroup.Text id="basic-addon1">
+                                €
+                            </InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
+                            required
                             name="amount"
+                            type="number"
                             placeholder="Amount"
                             aria-label="Username"
                             aria-describedby="basic-addon1"
@@ -77,9 +77,17 @@ const Add = () => {
                     </InputGroup>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">Type</InputGroup.Text>
+                            <InputGroup.Text id="basic-addon1">
+                                Type
+                            </InputGroup.Text>
                         </InputGroup.Prepend>
-                        <FormControl as="select" name="expenseType" onChange={handleChange} defaultValue>
+                        <FormControl
+                            required
+                            as="select"
+                            name="expenseType"
+                            onChange={handleChange}
+                            defaultValue
+                        >
                             <option>Select a type</option>
                             <option>Clothes</option>
                             <option>Leisure</option>
@@ -88,7 +96,9 @@ const Add = () => {
                     </InputGroup>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">Date</InputGroup.Text>
+                            <InputGroup.Text id="basic-addon1">
+                                Date
+                            </InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
                             name="date"
@@ -97,13 +107,20 @@ const Add = () => {
                         />
                     </InputGroup>
                     <div className="add-button mx-auto">
-                        <Button variant="outline-primary" type="submit" size="lg" onSubmit={handleSubmit} block>Save</Button>
+                        <Button
+                            variant="outline-primary"
+                            type="submit"
+                            size="lg"
+                            onSubmit={handleSubmit}
+                            block
+                        >
+                            Save
+                        </Button>
                     </div>
                 </Form>
             </div>
-
         </div>
     )
 }
 
-export default Add;
+export default Add
