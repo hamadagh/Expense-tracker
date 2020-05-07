@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { InputGroup, FormControl, Form, Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter, Redirect } from 'react-router-dom'
 import { addExpenseAction } from '../../redux/actions/action'
 import './add.scss'
 
@@ -15,6 +15,7 @@ const Add = () => {
     })
 
     const dispatch = useDispatch()
+    const [toHome, setToHome] = useState(false)
 
     const handleChange = (e) => {
         setExpense({ ...expense, [e.target.name]: e.target.value })
@@ -28,18 +29,18 @@ const Add = () => {
         ) {
             alert('Please select a type')
         } else {
-            return dispatch(addExpenseAction(expense))
+            dispatch(addExpenseAction(expense))
+            setToHome(true)
         }
     }
 
-    console.log(expense)
-
     return (
-        <div className="add-section">
-            <div className="back-to-home">
-                <Link to="/">Back To Home</Link>
+        <div className="add-section container">
+            {toHome ? <Redirect to="/" /> : null}
+            <div className="back-to-home pt-4">
+                <Link to="/">{`<`} Back To Home</Link>
             </div>
-            <div className="add-header">
+            <div className="add-header text-center mb-4 mt-5">
                 <h2>Add Expenses</h2>
             </div>
             <div className="add-form">
@@ -123,4 +124,4 @@ const Add = () => {
     )
 }
 
-export default Add
+export default withRouter(Add)
